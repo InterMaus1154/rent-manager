@@ -14,6 +14,7 @@ class PaymentService
     public function all(): Collection
     {
         return $this->query()
+            ->orderBy('paid_at', 'desc')
             ->with('tenant')
             ->get();
     }
