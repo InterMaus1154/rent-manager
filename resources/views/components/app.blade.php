@@ -17,6 +17,8 @@
                 <a class="hover:text-text-secondary transition-colors" href="{{route('auth.login.view')}}">Admin</a>
             @endguest
             @auth
+                <a class="hover:text-text-secondary transition-colors" href="">Add payment</a>
+                <a class="hover:text-text-secondary transition-colors" href="{{route('tenants.index')}}">Add tenant</a>
                 <form method="POST" action="{{route('auth.logout')}}">
                     @csrf
                     <button class="cursor-pointer hover:text-text-secondary transition-colors">Logout</button>
@@ -26,7 +28,7 @@
     </header>
 @endif
 
-<main>
+<main class="p-4">
     {{$slot}}
 </main>
 </body>

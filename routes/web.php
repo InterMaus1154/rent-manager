@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AuthController;
 use App\Http\Middleware\AuthMiddleware;
+use App\Http\Controllers\TenantController;
 
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
 
@@ -14,5 +15,13 @@ Route::group(['prefix' => 'auth', 'controller' => AuthController::class], functi
 
     Route::middleware(AuthMiddleware::class)->group(function(){
        Route::post('/logout', 'logout')->name('auth.logout');
+    });
+});
+
+Route::middleware(AuthMiddleware::class)->group(function() {
+    Route::group(['prefix' => 'tenants', 'controller' => TenantController::class], function() {
+
+        Route::get('/', 'index')->name('tenants.index');
+        Route::post('/', 'store')->name('tenants.store');
     });
 });

@@ -17,4 +17,9 @@ class Tenant extends Model
     {
         return $this->getAttribute('name');
     }
+
+    public function setName(string $value): void
+    {
+        $this->setAttribute('name', $value);
+    }
 }
