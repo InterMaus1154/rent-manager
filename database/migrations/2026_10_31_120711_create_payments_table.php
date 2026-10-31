@@ -16,6 +16,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(Tenant::class, 'tenant_id');
             $table->integer('amount');
+            $table->date('paid_at');
             $table->timestamps();
         });
     }

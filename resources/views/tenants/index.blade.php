@@ -29,4 +29,10 @@
             </tbody>
         </table>
     </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const input = document.querySelector("input[name='name']");
+            input.focus();
+        });
+    </script>
 </x-app>
