@@ -1,3 +1,4 @@
+@props(['withHeader' => true])
 <!doctype html>
 <html lang="en">
 <head>
@@ -7,22 +8,24 @@
     @vite(['resources/css/app.css'])
 </head>
 <body class="bg-base">
-<header class="flex items-center justify-between gap-4 p-4">
-    <h1 class="text-text-body text-4xl">Rent Management</h1>
-    <nav class="text-text-secondary text-xl flex items-center gap-4">
-        <a class="hover:text-text-body transition-colors" href="{{route('dashboard.index')}}">Home</a>
-        @guest
-            <a class="hover:text-text-body transition-colors" href="{{route('dashboard.index')}}">Admin</a>
-        @endguest
-        @auth
-            <form method="POST" action="">
-                @csrf
-                <button class="cursor-pointer hover:text-text-body transition-colors">Logout</button>
-            </form>
-        @endauth
+@if($withHeader)
+    <header class="flex items-center justify-between gap-4 p-4 bg-menus">
+        <h1 class="text-text-body text-4xl">Rent Management</h1>
+        <nav class="text-text-body text-xl flex items-center gap-4">
+            <a class="hover:text-text-secondary transition-colors" href="{{route('dashboard.index')}}">Home</a>
+            @guest
+                <a class="hover:text-text-secondary transition-colors" href="{{route('auth.login.view')}}">Admin</a>
+            @endguest
+            @auth
+                <form method="POST" action="{{route('auth.logout')}}">
+                    @csrf
+                    <button class="cursor-pointer hover:text-text-secondary transition-colors">Logout</button>
+                </form>
+            @endauth
+        </nav>
+    </header>
+@endif
 
-    </nav>
-</header>
 <main>
     {{$slot}}
 </main>

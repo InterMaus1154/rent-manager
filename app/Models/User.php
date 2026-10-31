@@ -24,4 +24,9 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function getHashedPassword(): string
+    {
+        return $this->getAttribute('password');
+    }
 }
