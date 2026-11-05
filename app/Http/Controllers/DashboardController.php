@@ -20,6 +20,10 @@ class DashboardController extends Controller
 
         $numTenants = $tenants->count();
 
+        if($numTenants === 0) {
+            $numTenants = 1;
+        }
+
         $perTenantAmount = round(config('rent.total_rent') / $numTenants, 2);
 
         $tenantSums = [];
