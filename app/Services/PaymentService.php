@@ -30,12 +30,13 @@ class PaymentService
      */
     public function forTenantIdSum(int $tenantId): int
     {
-        return $this->query()
+        $db = $this->query()
             ->selectRaw('SUM(amount) as sum')
             ->where('tenant_id', $tenantId)
             ->groupBy('tenant_id')
-            ->first()
-            ->sum;
+            ->first();
+
+        return is_null($db) ? 0 : $db->sum;
     }
 
     /**
